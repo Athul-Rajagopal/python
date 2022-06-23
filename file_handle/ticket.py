@@ -1,33 +1,39 @@
 ## tring to create a train ticket generator using file handling methode
 
-from numpy import true_divide
+num = 1
+def book_ticket():
+    
+    name = input("Enter your name :").upper()
+    age = int(input("enter your age :"))
+    travel_from = input("Enter your starting station :").upper()
+    travel_to = input("Enter your destination :").upper()
 
+    ## ticket format is defined
+    format = "TKTxxx"
 
-# name = input("Enter your name :").capitalize()
-# age = int(input("enter your age :"))
-# travel_from = input("Enter your starting station :").capitalize()
-# travel_to = input("Enter your destination :").capitalize()
-# file = open("data.txt",'w')
-# file.write(f"Name : {name}\nAge : {age}\nTravel from :{travel_from}\nTravel to : {travel_to}\n")
-# file.write('--------------------------------------------------------------\n')
-# file.close()
-
-
-
-##ticket number
-num=90 
-while num<=110:
-    format = "tktxxx"
+    #for auto generation of ticket
+    current_num =num+1
     zero=(9-len(format))*'0'
-    temp=format+str(zero)+str(num)
-    
-    if len(temp)>10:
-        # zero=(8-len(format))*'0'
-        zero=(10-((len(str(num))+len(format))))*'0'
-        temp=format+str(zero)+str(num)
-    
-    print(temp)
-    num+=1
-
+    temp=format+str(zero)+str(current_num)
+    if len(temp)>10:     ##to set the ticket format(length) to be constant
+        zero=(10-((len(str(1))+len(format))))*'0'
+        temp=format+str(zero)+str(current_num)
         
+        
+##file opened and writed
+    file = open("data.txt",'w+')
+    file.write(f"Name : {name}\nAge : {age}\nTravel from :{travel_from}\nTravel to : {travel_to}\nTicket number : {temp}\n")
+    file.write('--------------------------------------------------------------\n')
+    file.close()
+    
+    file=open("data.txt",'r+')
+
+    print(file.read())
+    file.close()
+
+book_ticket()
+
+
+
+
     
